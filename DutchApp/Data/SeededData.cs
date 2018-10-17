@@ -16,19 +16,29 @@ namespace DutchApp.Data
           {
             Id = 1,
             Front = "The street",
-            Back = "De straat"
+            Back = "De straat",
+            SoundRef = "sounds/de-straat.mp3"
           },
           new FlashCard
           {
             Id = 2,
             Front = "The effort",
-            Back = "De poging"
+            Back = "De poging",
+            SoundRef = "sounds/de-poging.mp3"
           },
           new FlashCard
           {
             Id = 3,
             Front = "The door",
-            Back = "De deur"
+            Back = "De deur",
+            SoundRef = "sounds/de-deur.mp3"
+          },
+            new FlashCard
+          {
+            Id = 4,
+            Front = "I have not seen it",
+            Back = "Ik heb het niet gezien",
+            SoundRef = "sounds/ik-heb-het-niet-gezien.mp3"
           }
         });
     }

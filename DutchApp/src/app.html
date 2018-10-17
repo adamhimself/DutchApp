@@ -11,6 +11,7 @@
     <h1>${flashcards[currentArrayIndex].front}</h1>
     <div show.bind="showAnswer">
       <h1>${flashcards[currentArrayIndex].back}</h1>
+      <button click.delegate="playSound(flashcards[currentArrayIndex].soundRef)" class="btn btn-sm btn-success">Play sound</button>
     </div>
 
 
@@ -24,6 +25,6 @@
   </div>
  
 
-  <sub-counter class="col-md-6"></sub-counter>
-  <main-counter class="col-md-6"></main-counter>
+  <!--<sub-counter class="col-md-6"></sub-counter>
+  <main-counter class="col-md-6"></main-counter>-->
 </template>

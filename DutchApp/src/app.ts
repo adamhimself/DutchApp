@@ -1,8 +1,8 @@
-﻿import { HttpClient } from "aurelia-fetch-client"
-import { autoinject } from "aurelia-framework";
+﻿import { HttpClient } from 'aurelia-fetch-client';
+import { autoinject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
-import { FlashcardSeeder } from "flashcard-seeder";
 import { computedFrom } from 'aurelia-framework';
+import { Howl, Howler } from 'howler';
 
 @autoinject
 export class App {
@@ -30,6 +30,23 @@ export class App {
   
   showTheAnswer() {
     this.showAnswer = true;
+  }
+
+  playSound(ref) {
+    console.log('here is ref: ' + ref);
+
+    var soundId;
+
+    var sound = new Howl({
+      src: [ref]
+    });
+
+    console.log('sound playing' + sound.playing());
+        
+    if (sound.playing() === false) {
+      soundId = sound.play();
+    }
+
   }
 
   answerButton(value) {
