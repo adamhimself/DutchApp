@@ -1,0 +1,29 @@
+<template>
+
+  <require from="./main-counter"></require>
+  <require from="./sub-counter"></require>
+
+  <h1>${message}</h1>
+  <div>
+
+    <h2>Total number of flashcards: ${flashcards.length}</h2>
+    <h1 show.bind="isLearningComplete">Learning complete!</h1>
+    <h1>${flashcards[currentArrayIndex].front}</h1>
+    <div show.bind="showAnswer">
+      <h1>${flashcards[currentArrayIndex].back}</h1>
+    </div>
+
+
+    <button show.bind="!showAnswer && !isLearningComplete" click.delegate="showTheAnswer()" class="btn btn-success">Show answer</button>
+    <div show.bind="showAnswer" class="answerButtons">
+      <button click.delegate="answerButton(0)">Again</button>
+      <button click.delegate="answerButton(1)">Ok</button>
+      <button click.delegate="answerButton(2)">Easy</button>
+    </div>
+
+  </div>
+ 
+
+  <sub-counter class="col-md-6"></sub-counter>
+  <main-counter class="col-md-6"></main-counter>
+</template>
