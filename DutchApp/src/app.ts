@@ -13,6 +13,9 @@ export class App {
   showAnswer;
   isLearningDone;
   firstCard;
+
+  // Howler sound variables.
+  itemAudio;
  
   constructor(private client: HttpClient) {
     this.client.configure(x => x.useStandardConfiguration().withBaseUrl("api/"));
@@ -33,22 +36,20 @@ export class App {
   }
 
   playSound(ref) {
-    console.log('here is ref: ' + ref);
+    // Stop any sounds playing if they exist.
+    if (this.itemAudio != null) {
+      this.itemAudio.stop();
+    }    
 
-    var soundId;
-
-    var sound = new Howl({
+    // Create howl object.
+    this.itemAudio = new Howl({
       src: [ref]
     });
 
-    console.log('sound playing' + sound.playing());
-        
-    if (sound.playing() === false) {
-      soundId = sound.play();
-    }
-
+    // Play sound.
+    this.itemAudio.play();  
   }
-
+  
   answerButton(value) {
     this.currentArrayIndex += 1;
     this.showAnswer = false;
@@ -56,7 +57,6 @@ export class App {
 
   @computedFrom('currentArrayIndex','flashcards.length')
   get isLearningComplete(): boolean {
-    console.log('Running is learning complete');
     if (this.currentArrayIndex >= this.flashcards.length) {
       return true;
     } else {

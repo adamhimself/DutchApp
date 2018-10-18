@@ -8,18 +8,24 @@
 
     <h2>Total number of flashcards: ${flashcards.length}</h2>
     <h1 show.bind="isLearningComplete">Learning complete!</h1>
-    <h1>${flashcards[currentArrayIndex].front}</h1>
-    <div show.bind="showAnswer">
-      <h1>${flashcards[currentArrayIndex].back}</h1>
-      <button click.delegate="playSound(flashcards[currentArrayIndex].soundRef)" class="btn btn-sm btn-success">Play sound</button>
+    <p class="flashcard-text">${flashcards[currentArrayIndex].front}</p>
+
+
+    <div class="flashcard-element" show.bind="showAnswer">
+
+      <i class="fas fa-play-circle fa-5x icon-colour" click.delegate="playSound(flashcards[currentArrayIndex].soundRef)"></i>
+      <span class="flashcard-text">${flashcards[currentArrayIndex].back}</span>
+      
     </div>
 
 
-    <button show.bind="!showAnswer && !isLearningComplete" click.delegate="showTheAnswer()" class="btn btn-success">Show answer</button>
-    <div show.bind="showAnswer" class="answerButtons">
-      <button click.delegate="answerButton(0)">Again</button>
-      <button click.delegate="answerButton(1)">Ok</button>
-      <button click.delegate="answerButton(2)">Easy</button>
+    <div class="flashcard-element">
+      <button class="btn btn-success flashcard-element" show.bind="!showAnswer && !isLearningComplete" click.delegate="showTheAnswer()">Show answer</button>
+    </div>    
+    <div show.bind="showAnswer" class="answerButtons flashcard-element">
+      <button class="btn btn-danger" click.delegate="answerButton(0)">Again</button>
+      <button class="btn btn-warning" click.delegate="answerButton(1)">Ok</button>
+      <button class="btn btn-success" click.delegate="answerButton(2)">Easy</button>
     </div>
 
   </div>
