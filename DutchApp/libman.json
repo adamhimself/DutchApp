@@ -3,8 +3,12 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "bootswatch@3.3.7",
+      "library": "bootswatch@4.1.3",
       "destination": "wwwroot/lib/bootswatch/"
+    },
+    {
+      "library": "twitter-bootstrap@4.1.3",
+      "destination": "wwwroot/lib/bootstrap"
     }
   ]
 }
