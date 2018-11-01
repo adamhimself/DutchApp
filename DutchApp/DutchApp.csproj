@@ -11,6 +11,7 @@
     <None Remove="src\resources\app.ts" />
     <None Remove="src\resources\flash-card.ts" />
     <None Remove="src\resources\list-of-flashcards.ts" />
+    <None Remove="src\some-message.ts" />
     <None Remove="src\sub-counter.ts" />
   </ItemGroup>
 
@@ -23,6 +24,7 @@
     <TypeScriptCompile Include="src\main-counter.ts" />
     <TypeScriptCompile Include="src\flash-card.ts" />
     <TypeScriptCompile Include="src\flashcard-seeder.ts" />
+    <TypeScriptCompile Include="src\some-message.ts" />
     <TypeScriptCompile Include="src\sub-counter.ts" />
   </ItemGroup>
 

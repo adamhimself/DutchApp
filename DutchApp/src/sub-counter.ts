@@ -1,5 +1,6 @@
 ﻿import { EventAggregator } from 'aurelia-event-aggregator';
 import { autoinject } from 'aurelia-framework';
+import { SomeMessage } from 'some-message';
 
 @autoinject
 export class SubCounter {
@@ -10,9 +11,7 @@ export class SubCounter {
   }
 
   publish(): void {
-    var payload = this.subCount;
-    console.log('payload: ' + payload);
-    this.eventAggregator.publish('channel-1', payload);
+    this.eventAggregator.publish(new SomeMessage(this.subCount));
   }
 
   addSubCount() {

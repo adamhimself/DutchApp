@@ -13,6 +13,7 @@ export class App {
   showAnswer;
   isLearningDone;
   firstCard;
+  apiCallCount;
 
   // Howler sound variables.
   itemAudio;
@@ -29,6 +30,10 @@ export class App {
     this.client.fetch('flashcards')
       .then(response => response.json())
       .then(response => this.flashcards = response);
+  }
+
+  attached() {
+    console.log('running attached callback! I am invoked after constructor, created and bind in that order');
   }
   
   showTheAnswer() {
