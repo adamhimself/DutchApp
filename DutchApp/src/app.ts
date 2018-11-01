@@ -3,6 +3,7 @@ import { autoinject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { computedFrom } from 'aurelia-framework';
 import { Howl, Howler } from 'howler';
+import { WebAPI } from 'web-api';
 
 @autoinject
 export class App {

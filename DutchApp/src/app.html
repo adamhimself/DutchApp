@@ -5,23 +5,21 @@
 
   <h1>${message}</h1>
   <div>
-
+    <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
     <h2>Total number of flashcards: ${flashcards.length}</h2>
     <h1 show.bind="isLearningComplete">Learning complete!</h1>
     <p class="flashcard-text">${flashcards[currentArrayIndex].front}</p>
 
-
     <div class="flashcard-element" show.bind="showAnswer">
-
       <i class="fas fa-play-circle fa-5x icon-colour" click.delegate="playSound(flashcards[currentArrayIndex].soundRef)"></i>
       <span class="flashcard-text">${flashcards[currentArrayIndex].back}</span>
-      
     </div>
 
+    <input class="form-control form-control-lg" type="text" placeholder="type answer here">
 
     <div class="flashcard-element">
       <button class="btn btn-success flashcard-element" show.bind="!showAnswer && !isLearningComplete" click.delegate="showTheAnswer()">Show answer</button>
-    </div>    
+    </div>
     <div show.bind="showAnswer" class="answerButtons flashcard-element">
       <button class="btn btn-danger" click.delegate="answerButton(0)">Again</button>
       <button class="btn btn-warning" click.delegate="answerButton(1)">Ok</button>
@@ -31,8 +29,8 @@
   </div>
  
 
-  <sub-counter class="col-md-6"></sub-counter>
-  <main-counter class="col-md-6"></main-counter>
+  <sub-counter class="card"></sub-counter>
+  <main-counter></main-counter>
 
   <div id="div1">
     <p>Some text</p>
