@@ -7,14 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="src\environment.ts" />
+    <None Remove="src\grammar-helper.ts" />
     <None Remove="src\loading-indicator.ts" />
-    <None Remove="src\main-counter.ts" />
+    <None Remove="src\register-user.ts" />
     <None Remove="src\resources\app.ts" />
     <None Remove="src\resources\flash-card.ts" />
     <None Remove="src\resources\list-of-flashcards.ts" />
     <None Remove="src\resources\site.css" />
-    <None Remove="src\some-message.ts" />
-    <None Remove="src\sub-counter.ts" />
+    <None Remove="src\resources\user.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,16 +26,23 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="src\app.ts" />
+    <TypeScriptCompile Include="src\environment.ts" />
+    <TypeScriptCompile Include="src\grammar-helper.ts" />
+    <TypeScriptCompile Include="src\register-user.ts" />
     <TypeScriptCompile Include="src\resources\loading-indicator.ts" />
-    <TypeScriptCompile Include="src\main-counter.ts" />
     <TypeScriptCompile Include="src\flash-card.ts" />
     <TypeScriptCompile Include="src\flashcard-seeder.ts" />
-    <TypeScriptCompile Include="src\some-message.ts" />
-    <TypeScriptCompile Include="src\sub-counter.ts" />
+    <TypeScriptCompile Include="src\user.ts" />
   </ItemGroup>
 
 </Project>

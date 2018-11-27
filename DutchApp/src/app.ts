@@ -1,73 +1,80 @@
 ﻿import { HttpClient } from 'aurelia-fetch-client';
 import { autoinject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
-import { computedFrom } from 'aurelia-framework';
-import { Howl, Howler } from 'howler';
-import { WebAPI } from 'web-api';
+import { GrammarCheck } from './grammar-helper';
 
 @autoinject
 export class App {
   ea;
-  message = "Dutch flashcard engine";
-  flashcards = [];
-  currentArrayIndex;
-  showAnswer;
-  isLearningDone;
-  firstCard;
+
+  // GET arrays.
+  phrases;
+  verbs;
+
+  // User generated arrays.
+  reviewedPhrases: string[];
+
+  // Counters and indexes.
+  currentStudyIndex;
+
+  grammarExplanation: string;
+
+  // Booleans.
+  showExplanation: boolean;
+  isCorrect: boolean;
+
   apiCallCount;
 
-  // Howler sound variables.
-  itemAudio;
+  infinitiveAnswer;
+
  
   constructor(private client: HttpClient) {
     this.client.configure(x => x.useStandardConfiguration().withBaseUrl("api/"));
-    this.currentArrayIndex = 0;
-    this.showAnswer = false;
-    this.isLearningDone = true;
+    this.showExplanation = false;
     this.ea = EventAggregator;
+    this.currentStudyIndex = 0;
+    this.grammarExplanation = "init";
+
+    this.reviewedPhrases = [];
   }
 
   activate() {
-    this.client.fetch('flashcards')
+    this.client.fetch('studyitems/phrases')
       .then(response => response.json())
-      .then(response => this.flashcards = response);
+      .then(response => this.phrases = response);
+
+    this.client.fetch('studyitems/verbs')
+      .then(response => response.json())
+      .then(response => this.verbs = response);
   }
 
   attached() {
-    console.log('running attached callback! I am invoked after constructor, created and bind in that order');
-  }
-  
-  showTheAnswer() {
-    this.showAnswer = true;
+    
   }
 
-  playSound(ref) {
-    // Stop any sounds playing if they exist.
-    if (this.itemAudio != null) {
-      this.itemAudio.stop();
-    }    
-
-    // Create howl object.
-    this.itemAudio = new Howl({
-      src: [ref]
-    });
-
-    // Play sound.
-    this.itemAudio.play();  
-  }
-  
-  answerButton(value) {
-    this.currentArrayIndex += 1;
-    this.showAnswer = false;
+  getGrammarTip() {
+    this.grammarExplanation = GrammarCheck(this.infinitiveAnswer);
   }
 
-  @computedFrom('currentArrayIndex','flashcards.length')
-  get isLearningComplete(): boolean {
-    if (this.currentArrayIndex >= this.flashcards.length) {
-      return true;
+  applyRecallDifficulty(difficulty) {
+
+    this.reviewedPhrases.push(this.phrases[this.currentStudyIndex].phraseNL + difficulty);
+    this.currentStudyIndex += 1;
+    this.showExplanation = false;
+  }
+
+  submitAnswer() {
+    if (this.infinitiveAnswer === this.phrases[this.currentStudyIndex].infinitiveNL) {
+      this.isCorrect = true;
     } else {
-      return false;
-    }
+      this.isCorrect = false;
+    }    
+    this.currentStudyIndex += 1;
   }
-   
+
+  showExplanationSection() {
+    this.showExplanation = true;
+  }
+    
+
 }

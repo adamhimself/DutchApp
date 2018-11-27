@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using DutchApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DutchApp
 {
@@ -32,8 +34,12 @@ namespace DutchApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var connection = @"User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=DutchApp;
+                              Pooling=true;";
+            services.AddDbContext<DutchAppContext>(options => options.UseNpgsql(connection));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

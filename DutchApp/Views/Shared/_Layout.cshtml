@@ -19,12 +19,13 @@
   <nav class="nav">
     <a class="nav-link active" asp-controller="Home" asp-action="Index">Index</a>
     <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+    <a class="nav-link" asp-controller="Users" asp-action="Index">Users</a>
     <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
     <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
     <a class="nav-link disabled" href="#">Disabled</a>
   </nav>
 
-    <partial name="_CookieConsentPartial" />
+    @*<partial name="_CookieConsentPartial" />*@
 
     <div class="container-fluid body-content">
         @RenderBody()
