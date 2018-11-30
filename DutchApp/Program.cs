@@ -29,5 +29,5 @@ namespace DutchApp
 
       builder.AddJsonFile("config.json", false, true);
     }
-}
+  }
 }
