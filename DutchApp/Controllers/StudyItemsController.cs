@@ -11,7 +11,7 @@ using System.Data;
 namespace DutchApp.Controllers
 {
   [Route("api/[controller]")]
-  public class StudyItemsController : ControllerBase
+  public class StudyItemsController : Controller
   {
     [HttpGet]
     [Route("verbs")]

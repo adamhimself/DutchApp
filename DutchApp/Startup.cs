@@ -12,49 +12,52 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using DutchApp.Models;
 using Microsoft.EntityFrameworkCore;
+using DutchApp.Data;
 
 namespace DutchApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+      private readonly IConfiguration _config;
 
-        public IConfiguration Configuration { get; }
+      public Startup(IConfiguration config)
+      {
+        _config = config;
+      }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.Configure<CookiePolicyOptions>(options =>
         {
-            services.Configure<CookiePolicyOptions>(options =>
+            // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            options.CheckConsentNeeded = context => true;
+            options.MinimumSameSitePolicy = SameSiteMode.None;
+        });
+
+        services.AddDbContext<DutchContext>(options =>
+        { 
+          options.UseNpgsql("server=localhost; User ID=postgres; Password=admin; Port=5432; Database=DutchApp; Pooling=true;");
+        });
+
+
+        services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            var connection = @"User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=DutchApp;
-                              Pooling=true;";
-            services.AddDbContext<DutchAppContext>(options => options.UseNpgsql(connection));
-
-
-      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                  HotModuleReplacement = true,
-                  ConfigFile = "webpack.netcore.config.js",
-                  HotModuleReplacementClientOptions = new Dictionary<string, string>{
-                {"reload", "true"}
-              }
+              HotModuleReplacement = true,
+              ConfigFile = "webpack.netcore.config.js",
+              HotModuleReplacementClientOptions = new Dictionary<string, string>{
+            {"reload", "true"}
+          }
         });
       }
             else

@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DutchConnectionString": "server=localhost; User ID=postgres; Password=admin; Port=5432; Database=DutchApp;Pooling=true;"
+  }
+}
