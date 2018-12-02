@@ -1,0 +1,9 @@
+﻿@model  IEnumerable<Verb>
+
+
+<h1>Verbs</h1>
+<p>Count: @Model.Count()</p>
+@foreach (var item in Model)
+{
+    <li>@item.InfinitiveNL</li>
+}

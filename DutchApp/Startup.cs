@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using DutchApp.Models;
 using Microsoft.EntityFrameworkCore;
 using DutchApp.Data;
+using DutchApp.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace DutchApp
 {
@@ -36,9 +38,18 @@ namespace DutchApp
             options.MinimumSameSitePolicy = SameSiteMode.None;
         });
 
+
+        services.AddIdentity<AppUser, IdentityRole>(cfg =>
+        {
+            cfg.User.RequireUniqueEmail = true;
+            cfg.Password.RequireUppercase = false;
+        })
+            .AddEntityFrameworkStores<DutchContext>();
+        
+
         services.AddDbContext<DutchContext>(options =>
         { 
-          options.UseNpgsql("server=localhost; User ID=postgres; Password=admin; Port=5432; Database=DutchApp; Pooling=true;");
+          options.UseNpgsql(_config.GetConnectionString("DutchConnectionString"));
         });
 
 
@@ -62,25 +73,27 @@ namespace DutchApp
       }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/App/Error");
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
             app.UseCookiePolicy();
 
             app.UseStaticFiles();
+            
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
               routes.MapRoute(
                   name: "default",
-                  template: "{controller=Home}/{action=Index}/{id?}");
+                  template: "{controller=App}/{action=Index}/{id?}");
 
               routes.MapSpaFallbackRoute(
                   name: "spa-fallback",
-                  defaults: new { controller = "Home", action = "Index" });
+                  defaults: new { controller = "App", action = "Index" });
             });
     }
     }

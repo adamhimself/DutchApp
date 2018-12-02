@@ -1,4 +1,6 @@
-﻿using DutchApp.Models;
+﻿using DutchApp.Data.Entities;
+using DutchApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DutchApp.Data
 {
-  public class DutchContext : DbContext
+  public class DutchContext : IdentityDbContext<AppUser>
   {
     public DutchContext(DbContextOptions<DutchContext> options): base(options)
     {
