@@ -24,16 +24,8 @@ namespace DutchApp.Controllers
         {
             return View();
         }
-
-        [Authorize]
-        public IActionResult Verbs()
-        {
-            var results = _context.Verbs
-                .OrderBy(v => v.Id)
-                .ToList();
-
-            return View(results);
-        }
+        
+        
 
 
         public IActionResult About()

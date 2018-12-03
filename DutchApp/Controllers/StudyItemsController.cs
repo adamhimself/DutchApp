@@ -34,5 +34,10 @@ namespace DutchApp.Controllers
       return "creating user!";
     }
 
+    public IActionResult AddVerb()
+    {
+        return View();
+    }
+
   }
 }

@@ -45,4 +45,10 @@
     <TypeScriptCompile Include="src\user.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Verb\AddVerb.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

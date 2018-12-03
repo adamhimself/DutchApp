@@ -51,7 +51,7 @@ namespace DutchApp.Controllers
                     {
                         return Redirect(Request.Query["ReturnUrl"].First());
                     }
-                    RedirectToAction("Verbs", "App");
+                    RedirectToAction("Verbs", "Verb");
                 }
             }
 
@@ -65,14 +65,26 @@ namespace DutchApp.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Register()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var result = _userManager.CreateAsync()
-        //    }
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new AppUser()
+                {
+                    UserName = model.Username,
+                    Email = model.Email
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Verbs", "App");
+                }
+            }
+            return View(model);
+        }
 
         [HttpGet]
         public async Task<IActionResult> Logout()

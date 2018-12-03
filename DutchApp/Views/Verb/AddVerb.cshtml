@@ -1,0 +1,61 @@
+﻿@model Verb
+@{
+    ViewData["Title"] = "Add Verb";
+}
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h1>Add Verb</h1>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="InfinitiveEN">English Infinitive</label>
+                <input asp-for="InfinitiveEN" class="form-control" />
+                <span asp-validation-for="InfinitiveEN" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InfinitiveNL">Dutch Infinitive</label>
+                <input asp-for="InfinitiveNL" class="form-control" />
+                <span asp-validation-for="InfinitiveNL" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstPersonSingular">1st Person singular</label>
+                <input asp-for="FirstPersonSingular" class="form-control" />
+                <span asp-validation-for="FirstPersonSingular" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondPersonSingular">2nd Person singular</label>
+                <input asp-for="SecondPersonSingular" class="form-control" />
+                <span asp-validation-for="SecondPersonSingular" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdPersonSingular">3rd Person singular</label>
+                <input asp-for="ThirdPersonSingular" class="form-control" />
+                <span asp-validation-for="ThirdPersonSingular" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SimplePastSingular">Simple past singular</label>
+                <input asp-for="SimplePastSingular" class="form-control" />
+                <span asp-validation-for="SimplePastSingular" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SimplePastPlural">Simple past plural</label>
+                <input asp-for="SimplePastPlural" class="form-control" />
+                <span asp-validation-for="SimplePastPlural" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PastParticiple">Past participle</label>
+                <input asp-for="PastParticiple" class="form-control" />
+                <span asp-validation-for="PastParticiple" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
