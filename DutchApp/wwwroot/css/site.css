@@ -15,20 +15,20 @@ h2 {
   text-align: center;
 }
 
+.header-bar {
+  background-color: #343a40;
+}
 
 
 .icon-colour {
   color: cornflowerblue;
 }
 
-
-
-
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* Carousel */
@@ -53,4 +53,10 @@ h2 {
     .carousel-caption {
         display: none;
     }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

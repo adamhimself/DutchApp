@@ -13,20 +13,6 @@ namespace DutchApp.Controllers
   [Route("api/[controller]")]
   public class StudyItemsController : Controller
   {
-    [HttpGet]
-    [Route("verbs")]
-    public IEnumerable<Verb> Get()
-    {
-      return SeededData.GetVerbs();
-    }
-
-    [HttpGet]
-    [Route("[action]")]
-    public IEnumerable<Phrase> Phrases()
-    {
-      return SeededData.GetPhrases();
-    }
-
     [HttpPost]
     [Route("CreateUser")]
     public string CreateUser()
