@@ -14,7 +14,7 @@
 
 <body>
 
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="dutch-header text-white navbar navbar-dark">
     <a class="nav-link active" asp-controller="App" asp-action="Index">Index</a>
     <a class="" asp-controller="App" asp-action="About">About</a>
     <a class="nav-link" asp-controller="Verb" asp-action="Verbs">Verbs</a>
@@ -23,6 +23,7 @@
     <a class="nav-link disabled" href="#">Disabled</a>
     @if (User.Identity.IsAuthenticated)
     {
+        <span>@User.Identity.Name</span>
       <a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
     }
     else
@@ -34,13 +35,16 @@
 
     @*<partial name="_CookieConsentPartial" />*@
 
-    <div class="container-fluid body-content">
-        @RenderBody()
-        <hr />
-        <footer class="bg-dark text-white">
+  <div class="container-fluid body-content">
+      @RenderBody()
+      <hr />
+      @*<footer class="bg-dark dutch-footer text-white">
+            <p>&copy; 2018 - DutchApp Hooray!</p>
+        </footer>*@
+      <footer class="dutch-footer text-white">
             <p>&copy; 2018 - DutchApp Hooray!</p>
         </footer>
-    </div>
+  </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

@@ -69,6 +69,30 @@ namespace DutchApp.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("DutchApp.Data.Entities.Review", b =>
+                {
+                    b.Property<int>("ReviewID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AppUserID");
+
+                    b.Property<string>("AppUserId");
+
+                    b.Property<int>("RecallDifficulty");
+
+                    b.Property<DateTime>("ReviewDate");
+
+                    b.Property<int>("VerbID");
+
+                    b.HasKey("ReviewID");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("VerbID");
+
+                    b.ToTable("Reviews");
+                });
+
             modelBuilder.Entity("DutchApp.Data.Verb", b =>
                 {
                     b.Property<int>("Id")
@@ -206,6 +230,18 @@ namespace DutchApp.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("DutchApp.Data.Entities.Review", b =>
+                {
+                    b.HasOne("DutchApp.Data.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("DutchApp.Data.Verb", "Verb")
+                        .WithMany()
+                        .HasForeignKey("VerbID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DutchApp.Data.Verb", b =>

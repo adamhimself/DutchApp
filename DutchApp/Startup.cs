@@ -38,13 +38,19 @@ namespace DutchApp
             options.MinimumSameSitePolicy = SameSiteMode.None;
         });
 
+        services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequireUppercase = false;
+            options.Password.RequireNonAlphanumeric = false;
+        });
+
 
         services.AddIdentity<AppUser, IdentityRole>(cfg =>
         {
             cfg.User.RequireUniqueEmail = true;
             cfg.Password.RequireUppercase = false;
         })
-            .AddEntityFrameworkStores<DutchContext>();
+        .AddEntityFrameworkStores<DutchContext>();
         
 
         services.AddDbContext<DutchContext>(options =>

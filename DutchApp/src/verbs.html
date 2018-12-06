@@ -1,0 +1,19 @@
+﻿<template>
+    ${message}
+    <h2>Verbs count: ${verbs.length}</h2>
+
+    <button click.delegate="getVerbs()">Get Verbs</button>
+    <h2 if.bind="verbs.length > 0">Verbs exist!</h2>
+    <h2 else>No verbs loaded!</h2>
+
+    <div repeat.for="verb of verbs">
+        <h1>Id: ${verb.id}</h1>
+        <h1>${verb.infinitiveEN}</h1>
+        <h1>${verb.infinitiveNL}</h1>
+        <button click.delegate="userInput(verb.id,'easy')">Easy</button>
+        <button click.delegate="userInput(verb.id,'hard')">Hard</button>
+
+    </div>
+
+
+</template>

@@ -16,6 +16,7 @@ namespace DutchApp.Data
     }
 
     public DbSet<Verb> Verbs { get; set; }
+    public DbSet<Review> Reviews { get; set; }
 
   }
 

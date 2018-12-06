@@ -55,8 +55,44 @@ h2 {
     }
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+.dutch-header {
+    
+    background-color: #f64d4c;
+}
+
+.content-box {
+    width: 540px;
+    height: 94px;
+    background-color: #2dafc5;
+    color: white;
+}
+
+    .content-box img {
+        height: 75px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        background-size: contain;
+        margin: 8px;
+    }
+
+    .content-box .img {
+        background-image: url("https://image.flaticon.com/icons/svg/201/201612.svg");
+        display: inline-block;
+        background-repeat: no-repeat;
+        height: 100px;
+        width: 100px;
+        float: left;
+    }
+
+
+.dutch-header a {
+    color: white;
+}
+
+.dutch-footer {
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #2dafc5;
 }
