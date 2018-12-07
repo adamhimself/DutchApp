@@ -19,9 +19,4 @@ namespace DutchApp.Data
     public DbSet<Review> Reviews { get; set; }
 
   }
-
-
-  
-
-  
 }

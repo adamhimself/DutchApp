@@ -52,8 +52,8 @@ namespace DutchApp.Controllers
                 VerbID = model.VerbID
             };
 
-            _context.Reviews.Add(userReview);
-            _context.SaveChangesAsync();
+            //_context.Reviews.Add(userReview);
+            //_context.SaveChangesAsync();
             return View();
         }
 
@@ -81,8 +81,8 @@ namespace DutchApp.Controllers
                     
                 };
 
-                await _context.Verbs.AddAsync(verb);
-                await _context.SaveChangesAsync();
+                //await _context.Verbs.AddAsync(verb);
+                //await _context.SaveChangesAsync();
             }
             ModelState.AddModelError("", "Failed to add verb");
             return RedirectToAction("Verbs", "App");

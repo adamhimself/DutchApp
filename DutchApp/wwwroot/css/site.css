@@ -15,6 +15,16 @@ h2 {
   text-align: center;
 }
 
+.content-box h2 {
+  text-align: left;
+}
+
+.content-body {
+  padding-top: 10px;
+  padding-left: 20px;
+  display:inline-block;
+}
+
 .header-bar {
   background-color: #343a40;
 }
@@ -65,7 +75,7 @@ h2 {
   height: 94px;
   background-color: #2dafc5;
   color: white;
-  transition: 0.2s;
+  transition: 0.15s;
   margin: 10px;
 }
 
@@ -79,25 +89,18 @@ a.content-box:hover {
   background-color: #238798;
   color: white;
   text-decoration: none;
-  transition: 0.2s;
+  transition: 0.15s;
 }
 
-    .content-box img {
-        height: 65px;
-        background-repeat: no-repeat;
-        background-position: 50%;
-        background-size: contain;
-        margin: 8px;
-    }
 
-    .content-box .img {
-        background-image: url("https://image.flaticon.com/icons/svg/201/201612.svg");
-        display: inline-block;
-        background-repeat: no-repeat;
-        height: 100px;
-        width: 100px;
-        float: left;
-    }
+.content-box .img {
+  background-image: url("https://image.flaticon.com/icons/svg/201/201612.svg");
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 80px;
+  margin: 6px;
+  float: left;
+}
 
 
 .dutch-header a {
@@ -107,6 +110,7 @@ a.content-box:hover {
 .dutch-footer {
     padding: 10px;
     position: absolute;
+    height: 20px;
     bottom: 0;
     width: 100%;
     background-color: #2dafc5;

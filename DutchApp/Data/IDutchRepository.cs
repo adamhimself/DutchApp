@@ -7,6 +7,7 @@ namespace DutchApp.Data
   public interface IDutchRepository
   {
     IEnumerable<Verb> GetAllVerbs();
+    Task<IActionResult>
     bool SaveAll();
   }
 }

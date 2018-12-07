@@ -15,12 +15,7 @@
 <body>
 
   <nav class="dutch-header text-white navbar navbar-dark">
-    <a class="nav-link active" asp-controller="App" asp-action="Index">Index</a>
-    <a class="" asp-controller="App" asp-action="About">About</a>
-    <a class="nav-link" asp-controller="Verb" asp-action="Verbs">Verbs</a>
-    <a class="nav-link" asp-controller="App" asp-action="Contact">Contact</a>
-    <a class="nav-link" asp-controller="App" asp-action="Privacy">Privacy</a>
-    <a class="nav-link disabled" href="#">Disabled</a>
+    <a class="nav-link active" asp-controller="App" asp-action="Index">Index</a>   
     @if (User.Identity.IsAuthenticated)
     {
         <span>@User.Identity.Name</span>
@@ -28,8 +23,11 @@
     }
     else
     {
-      <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
-      <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+      <div class="navbar float-right">
+
+        <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+        <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+      </div>
     }
   </nav>
 
@@ -37,13 +35,6 @@
 
   <div class="container-fluid body-content">
       @RenderBody()
-      <hr />
-      @*<footer class="bg-dark dutch-footer text-white">
-            <p>&copy; 2018 - DutchApp Hooray!</p>
-        </footer>*@
-      <footer class="dutch-footer text-white">
-            <p>&copy; 2018 - DutchApp Hooray!</p>
-        </footer>
   </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
