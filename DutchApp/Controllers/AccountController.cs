@@ -51,7 +51,7 @@ namespace DutchApp.Controllers
                     {
                         return Redirect(Request.Query["ReturnUrl"].First());
                     }
-                    return RedirectToAction("Verbs", "Verb");
+                    return RedirectToAction("Index", "App");
                 }
             }
 

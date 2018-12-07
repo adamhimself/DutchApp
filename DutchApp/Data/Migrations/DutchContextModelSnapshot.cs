@@ -74,9 +74,7 @@ namespace DutchApp.Migrations
                     b.Property<int>("ReviewID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AppUserID");
-
-                    b.Property<string>("AppUserId");
+                    b.Property<string>("AppUserID");
 
                     b.Property<int>("RecallDifficulty");
 
@@ -86,19 +84,19 @@ namespace DutchApp.Migrations
 
                     b.HasKey("ReviewID");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserID");
 
                     b.HasIndex("VerbID");
 
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("DutchApp.Data.Verb", b =>
+            modelBuilder.Entity("DutchApp.Data.Entities.Verb", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AuxiliaryVerbId");
+                    b.Property<int>("AuxiliaryVerbID");
 
                     b.Property<string>("FirstPersonPlural");
 
@@ -119,8 +117,6 @@ namespace DutchApp.Migrations
                     b.Property<string>("ThirdPersonSingular");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuxiliaryVerbId");
 
                     b.ToTable("Verbs");
                 });
@@ -236,19 +232,12 @@ namespace DutchApp.Migrations
                 {
                     b.HasOne("DutchApp.Data.Entities.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserID");
 
-                    b.HasOne("DutchApp.Data.Verb", "Verb")
+                    b.HasOne("DutchApp.Data.Entities.Verb", "Verb")
                         .WithMany()
                         .HasForeignKey("VerbID")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DutchApp.Data.Verb", b =>
-                {
-                    b.HasOne("DutchApp.Data.Verb", "AuxiliaryVerb")
-                        .WithMany()
-                        .HasForeignKey("AuxiliaryVerbId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

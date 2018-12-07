@@ -5,6 +5,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.nav-link {
+    font-size: 1.2em;
+}
+
 #div1 {
   width: 300px;
   height: 300px;
@@ -66,17 +70,16 @@ h2 {
 }
 
 .dutch-header {
-    
-    background-color: #f64d4c;
+    background-color: #0097A7;
 }
 
 .content-box {
-  width: 540px;
-  height: 94px;
-  background-color: #2dafc5;
-  color: white;
-  transition: 0.15s;
-  margin: 10px;
+    width: 540px;
+    height: 94px;
+    background-color: #0097A7;
+    color: white;
+    transition: 0.15s;
+    margin: 10px;
 }
 
 a.content-box:hover {
@@ -84,12 +87,12 @@ a.content-box:hover {
 }
 
 .content-box:hover {
-  width: 540px;
-  height: 94px;
-  background-color: #238798;
-  color: white;
-  text-decoration: none;
-  transition: 0.15s;
+    width: 540px;
+    height: 94px;
+    background-color: #00838F;
+    color: white;
+    text-decoration: none;
+    transition: 0.15s;
 }
 
 
@@ -114,4 +117,83 @@ a.content-box:hover {
     bottom: 0;
     width: 100%;
     background-color: #2dafc5;
+}
+
+@keyframes lds-bars {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes lds-bars {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/*Loading css*/
+.lds-bars {
+    position: relative;
+    left: 50%;
+    margin-left: -10px;
+    top: 50%;
+    margin-top: -40px;
+}
+
+    .lds-bars div {
+        position: absolute;
+        width: 20px;
+        height: 80px;
+        top: 60px;
+        -webkit-animation: lds-bars 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        animation: lds-bars 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    }
+
+        .lds-bars div:nth-child(1) {
+            left: 30px;
+            background: #fcb711;
+            -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s;
+        }
+
+        .lds-bars div:nth-child(2) {
+            left: 70px;
+            background: #f37021;
+            -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s;
+        }
+
+        .lds-bars div:nth-child(3) {
+            left: 110px;
+            background: #cc004c;
+            -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s;
+        }
+
+        .lds-bars div:nth-child(4) {
+            left: 150px;
+            background: #6460aa;
+        }
+
+.lds-bars {
+    width: 200px !important;
+    height: 200px !important;
+    -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
 }

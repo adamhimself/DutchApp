@@ -15,28 +15,36 @@ namespace DutchApp.Controllers
     {
         private SignInManager<AppUser> _signInManager;
         private UserManager<AppUser> _userManager;
+        private DutchContext _context;
         private IDutchRepository _repository;
 
         public VerbsController(IDutchRepository repository,
             SignInManager<AppUser> signInManager,
-            UserManager<AppUser> userManager)
+            UserManager<AppUser> userManager,
+            DutchContext context)
         {
             _repository = repository;
             _signInManager = signInManager;
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpGet]
         public JsonResult GetVerbs()
         {
             var results = _repository.GetAllVerbs();
-
             return Json(results);
         }
 
+        [HttpGet]
+        public JsonResult GetReviews()
+        {
+            var userId = _userManager.GetUserId(User);
+            var results = _repository.GetAllReviews(userId);
+            return Json(results);
+        }
 
         [HttpPost]
-        [Route("AddReview")]
         public async Task<IActionResult> AddReview([FromBody]Review model)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -52,9 +60,8 @@ namespace DutchApp.Controllers
                 VerbID = model.VerbID
             };
 
-            //_context.Reviews.Add(userReview);
-            //_context.SaveChangesAsync();
-            return View();
+            _repository.AddReview(userReview);
+            return Ok();
         }
 
         public IActionResult AddVerb()
@@ -63,7 +70,7 @@ namespace DutchApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddVerb(Verb model)
+        public async Task<IActionResult> AddVerb([FromBody]Verb model)
         {
             if (ModelState.IsValid)
             {
@@ -77,13 +84,14 @@ namespace DutchApp.Controllers
                     SimplePastSingular = model.SimplePastSingular,
                     SimplePastPlural = model.SimplePastPlural,
                     PastParticiple = model.PastParticiple,
-                    FirstPersonPlural = model.FirstPersonPlural
+                    FirstPersonPlural = model.FirstPersonPlural,
+                    AuxiliaryVerbID = model.AuxiliaryVerbID
                     
                 };
 
-                //await _context.Verbs.AddAsync(verb);
-                //await _context.SaveChangesAsync();
-            }
+                _repository.AddVerbs(verb);
+                return RedirectToAction("Verbs", "App");
+        }
             ModelState.AddModelError("", "Failed to add verb");
             return RedirectToAction("Verbs", "App");
         }

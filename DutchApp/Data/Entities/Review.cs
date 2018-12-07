@@ -17,7 +17,7 @@ namespace DutchApp.Data.Entities
     {
         public int ReviewID { get; set; }
         public int VerbID { get; set; }
-        public int AppUserID { get; set; }
+        public string AppUserID { get; set; }
         public DateTime ReviewDate { get; set; }
         public RecallDifficulty RecallDifficulty { get; set; }
 

@@ -15,21 +15,23 @@
 <body>
 
   <nav class="dutch-header text-white navbar navbar-dark">
-    <a class="nav-link active" asp-controller="App" asp-action="Index">Index</a>   
+    <a class="nav-link active" asp-controller="App" asp-action="Index">Index</a>
     @if (User.Identity.IsAuthenticated)
     {
-        <span>@User.Identity.Name</span>
-      <a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
+      <div class="navbar float-right">
+        <a class="nav-link">@User.Identity.Name</a>
+        <a class="nav-link " asp-controller="Account" asp-action="Logout">Logout</a>
+      </div>
     }
     else
     {
-      <div class="navbar float-right">
+    <div class="navbar float-right">
 
-        <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
-        <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
-      </div>
+      <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+      <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+    </div>
     }
-  </nav>
+    </nav>
 
     @*<partial name="_CookieConsentPartial" />*@
 

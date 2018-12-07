@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DutchApp.Migrations
 {
     [DbContext(typeof(DutchContext))]
-    [Migration("20181202211530_IdentityMigration")]
-    partial class IdentityMigration
+    [Migration("20181207113908_Inital")]
+    partial class Inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,7 +71,29 @@ namespace DutchApp.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("DutchApp.Data.Verb", b =>
+            modelBuilder.Entity("DutchApp.Data.Entities.Review", b =>
+                {
+                    b.Property<int>("ReviewID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AppUserID");
+
+                    b.Property<int>("RecallDifficulty");
+
+                    b.Property<DateTime>("ReviewDate");
+
+                    b.Property<int>("VerbID");
+
+                    b.HasKey("ReviewID");
+
+                    b.HasIndex("AppUserID");
+
+                    b.HasIndex("VerbID");
+
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("DutchApp.Data.Entities.Verb", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -210,9 +232,21 @@ namespace DutchApp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DutchApp.Data.Verb", b =>
+            modelBuilder.Entity("DutchApp.Data.Entities.Review", b =>
                 {
-                    b.HasOne("DutchApp.Data.Verb", "AuxiliaryVerb")
+                    b.HasOne("DutchApp.Data.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserID");
+
+                    b.HasOne("DutchApp.Data.Entities.Verb", "Verb")
+                        .WithMany()
+                        .HasForeignKey("VerbID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DutchApp.Data.Entities.Verb", b =>
+                {
+                    b.HasOne("DutchApp.Data.Entities.Verb", "AuxiliaryVerb")
                         .WithMany()
                         .HasForeignKey("AuxiliaryVerbId");
                 });

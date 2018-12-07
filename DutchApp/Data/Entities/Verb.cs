@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DutchApp.Data
+namespace DutchApp.Data.Entities
 {
-  public class Verb
-  {
-    public int Id { get; set; }
-    public string InfinitiveEN { get; set; }
-    public string InfinitiveNL { get; set; }
-    public string FirstPersonSingular { get; set; }
-    public string SecondPersonSingular { get; set; }
-    public string ThirdPersonSingular { get; set; }
-    public string FirstPersonPlural { get; set; }
-    public string SimplePastSingular { get; set; }
-    public string SimplePastPlural { get; set; }
-    public Verb AuxiliaryVerb { get; set; }
-    public string PastParticiple { get; set; }
-  }
+    public class Verb
+    {
+        public int Id { get; set; }
+        public string InfinitiveEN { get; set; }
+        public string InfinitiveNL { get; set; }
+        public string FirstPersonSingular { get; set; }
+        public string SecondPersonSingular { get; set; }
+        public string ThirdPersonSingular { get; set; }
+        public string FirstPersonPlural { get; set; }
+        public string SimplePastSingular { get; set; }
+        public string SimplePastPlural { get; set; }
+        public int AuxiliaryVerbID { get; set; }
+        public string PastParticiple { get; set; }
+
+        public Verb AuxiliaryVerb { get; set; }
+
+    }
 }
