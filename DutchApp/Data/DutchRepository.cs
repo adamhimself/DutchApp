@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace DutchApp.Data
 {
-    public class DutchRepository
-    {
+    public class DutchRepository : IDutchRepository
+  {
         private DutchContext _context;
 
         public DutchRepository(DutchContext context)
@@ -14,9 +14,16 @@ namespace DutchApp.Data
             _context = context;
         }
 
-        public IEnumerable<Verb> GetVerbs()
+        public IEnumerable<Verb> GetAllVerbs()
         {
-            return _context.Verbs.ToList();
+            return _context.Verbs
+                      .OrderBy(v => v.Id)
+                      .ToList();
+        }
+
+        public bool SaveAll()
+        {
+          return _context.SaveChanges() > 0;
         }
     }
 }

@@ -61,14 +61,29 @@ h2 {
 }
 
 .content-box {
-    width: 540px;
-    height: 94px;
-    background-color: #2dafc5;
-    color: white;
+  width: 540px;
+  height: 94px;
+  background-color: #2dafc5;
+  color: white;
+  transition: 0.2s;
+  margin: 10px;
+}
+
+a.content-box:hover {
+  text-decoration: none;
+}
+
+.content-box:hover {
+  width: 540px;
+  height: 94px;
+  background-color: #238798;
+  color: white;
+  text-decoration: none;
+  transition: 0.2s;
 }
 
     .content-box img {
-        height: 75px;
+        height: 65px;
         background-repeat: no-repeat;
         background-position: 50%;
         background-size: contain;

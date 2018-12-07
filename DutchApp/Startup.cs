@@ -51,7 +51,8 @@ namespace DutchApp
             cfg.Password.RequireUppercase = false;
         })
         .AddEntityFrameworkStores<DutchContext>();
-        
+
+        services.AddScoped<IDutchRepository, DutchRepository>();
 
         services.AddDbContext<DutchContext>(options =>
         { 

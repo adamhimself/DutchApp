@@ -13,11 +13,11 @@ namespace DutchApp.Controllers
 {
     public class AppController : Controller
     {
-        private DutchContext _context;
+        private IDutchRepository _repository;
 
-        public AppController(DutchContext context)
+        public AppController(IDutchRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public IActionResult Index()

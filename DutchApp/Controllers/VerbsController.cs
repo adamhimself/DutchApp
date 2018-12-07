@@ -15,13 +15,13 @@ namespace DutchApp.Controllers
     {
         private SignInManager<AppUser> _signInManager;
         private UserManager<AppUser> _userManager;
-        private DutchContext _context;
+        private IDutchRepository _repository;
 
-        public VerbsController(DutchContext context,
+        public VerbsController(IDutchRepository repository,
             SignInManager<AppUser> signInManager,
             UserManager<AppUser> userManager)
         {
-            _context = context;
+            _repository = repository;
             _signInManager = signInManager;
             _userManager = userManager;
         }
@@ -29,9 +29,7 @@ namespace DutchApp.Controllers
         [HttpGet]
         public JsonResult GetVerbs()
         {
-            var results = _context.Verbs
-                .OrderBy(v => v.Id)
-                .ToList();
+            var results = _repository.GetAllVerbs();
 
             return Json(results);
         }
