@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace DutchApp.Data
 {
-  public class DutchContext : IdentityDbContext<AppUser>
-  {
-    public DutchContext(DbContextOptions<DutchContext> options): base(options)
+    public class DutchContext : IdentityDbContext<AppUser>
     {
+        public DutchContext(DbContextOptions<DutchContext> options) : base(options)
+        {
+        }
+
+        public DbSet<Verb> Verbs { get; set; }
+        public DbSet<StudyItem> StudyItems { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
     }
-
-    public DbSet<Verb> Verbs { get; set; }
-    public DbSet<Review> Reviews { get; set; }
-
-  }
 }

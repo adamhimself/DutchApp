@@ -9,9 +9,11 @@ namespace DutchApp.Data
     public interface IDutchRepository
     {
         IEnumerable<Verb> GetAllVerbs();
+        IEnumerable<StudyItem> GetStudyVerbs(string userId);
         bool SaveAll();
         void AddVerbs(Verb verb);
         IEnumerable<Review> GetAllReviews(string userId);
         void AddReview(Review review);
+
     }
 }

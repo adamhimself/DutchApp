@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using DutchApp.Data;
 using DutchApp.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace DutchApp
 {
@@ -44,7 +45,6 @@ namespace DutchApp
             options.Password.RequireNonAlphanumeric = false;
         });
 
-
         services.AddIdentity<AppUser, IdentityRole>(cfg =>
         {
             cfg.User.RequireUniqueEmail = true;
@@ -59,9 +59,13 @@ namespace DutchApp
           options.UseNpgsql(_config.GetConnectionString("DutchConnectionString"));
         });
 
+        services.AddTransient<DutchSeeder>();
 
-        services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-    }
+        services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(opt =>
+            opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+        }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -83,6 +87,7 @@ namespace DutchApp
                 app.UseExceptionHandler("/App/Error");
                 app.UseHsts();
             }
+
 
             app.UseHttpsRedirection();
 

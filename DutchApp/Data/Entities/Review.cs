@@ -16,13 +16,12 @@ namespace DutchApp.Data.Entities
     public class Review
     {
         public int ReviewID { get; set; }
-        public int VerbID { get; set; }
+        public int StudyItemID { get; set; }
         public string AppUserID { get; set; }
         public DateTime ReviewDate { get; set; }
         public RecallDifficulty RecallDifficulty { get; set; }
 
-
-        public Verb Verb { get; set; }
+        public StudyItem StudyItem { get; set; }
         public AppUser AppUser { get; set; }
     }
 }

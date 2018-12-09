@@ -18,7 +18,7 @@
   "include": [
     "./src/**/*.ts",
     "./test/**/*.ts",
-    "./custom_typings/**/*.d.ts", "Controllers/VerbsController.cs"
+    "./custom_typings/**/*.d.ts", "Controllers/VerbsController.cs", "Data/Migrations"
   ],
   "atom": {
     "rewriteTsconfig": false

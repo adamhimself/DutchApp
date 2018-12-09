@@ -22,6 +22,8 @@ namespace DutchApp.Controllers
 
         public IActionResult Index()
         {
+            var results = _repository.GetAllVerbs();
+
             return View();
         }
         

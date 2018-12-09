@@ -1,32 +1,26 @@
 ﻿<template>
     <h2>${message}</h2>
-    <h2>Verbs count: ${verbs.length}</h2>
+    <h2>StudyVerbs count: ${studyVerbs.length}</h2>
 
     <div class="col-md-6">
-        <button click.delegate="getVerbs()">Get Verbs</button>
-        <button click.delegate="seedVerbs()">seed verbs</button>
-        <h2 if.bind="verbs.length > 0">Verbs exist!</h2>
-        <h2 else>No verbs loaded!</h2>
+        
+        <button click.delegate="getStudyVerbs()">Get Study Verbs</button>
 
-        <div repeat.for="verb of verbs">
-            <h1>Id: ${verb.id}</h1>
-            <h1>${verb.infinitiveEN}</h1>
-            <h1>${verb.infinitiveNL}</h1>
-
+        <div repeat.for="studyItem of studyVerbs">
+            <h1>Id: ${studyItem.verb.id}</h1>
+            <h1>${studyItem.verb.infinitiveEN}</h1>
+            <h1>${studyItem.verb.infinitiveNL}</h1>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button class="btn btn-secondary" click.delegate="userInput(verb.id,'again')">Again</button>
-                <button class="btn btn-secondary" click.delegate="userInput(verb.id,'hard')">Hard</button>
-                <button class="btn btn-secondary" click.delegate="userInput(verb.id,'Good')">Good</button>
-                <button class="btn btn-secondary" click.delegate="userInput(verb.id,'easy')">Easy</button>
+                <button class="btn btn-secondary" click.delegate="updateStudyItem(studyItem, 0.25)">Again</button>
+                <button class="btn btn-secondary" click.delegate="updateStudyItem(studyItem, 0.5)">Hard</button>
+                <button class="btn btn-secondary" click.delegate="updateStudyItem(studyItem, 1.5)">Good</button>
+                <button class="btn btn-secondary" click.delegate="updateStudyItem(studyItem, 2.0)">Easy</button>
+
             </div>
 
         </div>
-    </div>
 
-    <div class="col-md-6">
-        <button click.delegate="getReviews()">Get Reviews</button>
-        <p>Total reviews: ${reviews.length}</p>
-        <p repeat.for="review of reviews">${review.recallDifficulty}</p>
-    </div>
+
+        </div>
 
 </template>

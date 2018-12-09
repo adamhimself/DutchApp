@@ -13,7 +13,7 @@
         "pastParticiple": "geweest"
     },
     {
-        "verbID":2,
+        "verbID": 2,
         "infinitiveEN": "to have",
         "infinitiveNL": "hebben",
         "firstPersonSingular": "heb",
@@ -22,11 +22,11 @@
         "firstPersonPlural": "hebben",
         "simplePastSingular": "had",
         "simplePastPlural": "hadden",
-        "auxiliaryVerbId":2,
+        "auxiliaryVerbId": 2,
         "pastParticiple": "gehad"
     },
     {
-        "verbID":3,
+        "verbID": 3,
         "infinitiveEN": "to have to",
         "infinitiveNL": "moeten",
         "firstPersonSingular": "moet",
@@ -35,11 +35,11 @@
         "firstPersonPlural": "moeten",
         "simplePastSingular": "moest",
         "simplePastPlural": "moesten",
-        "auxiliaryVerbId":2,
+        "auxiliaryVerbId": 2,
         "pastParticiple": "gemoeten"
     },
     {
-        "verbID":4,
+        "verbID": 4,
         "infinitiveEN": "to be able",
         "infinitiveNL": "kunnen",
         "firstPersonSingular": "kan",
@@ -48,11 +48,11 @@
         "firstPersonPlural": "kunnen",
         "simplePastSingular": "kon",
         "simplePastPlural": "konden",
-        "auxiliaryVerbId":2,
+        "auxiliaryVerbId": 2,
         "pastParticiple": "gekund"
     },
     {
-        "verbID":5,
+        "verbID": 5,
         "infinitiveEN": "to go",
         "infinitiveNL": "gaan",
         "firstPersonSingular": "ga",
@@ -76,5 +76,57 @@
         "simplePastPlural": "deden",
         "auxiliaryVerbId": 2,
         "pastParticiple": "gedaan"
+    },
+    {
+        "verbID": 7,
+        "infinitiveEN": "to know",
+        "infinitiveNL": "weten",
+        "firstPersonSingular": "weet",
+        "secondPersonSingular": "weet",
+        "thirdPersonSingular": "weet",
+        "firstPersonPlural": "weten",
+        "simplePastSingular": "wist",
+        "simplePastPlural": "wisten",
+        "auxiliaryVerbId": 2,
+        "pastParticiple": "geweten"
+    },
+    {
+        "verbID": 8,
+        "infinitiveEN": "to become",
+        "infinitiveNL": "worden",
+        "firstPersonSingular": "word",
+        "secondPersonSingular": "wordt",
+        "thirdPersonSingular": "wordt",
+        "firstPersonPlural": "worden",
+        "simplePastSingular": "werd",
+        "simplePastPlural": "werden",
+        "auxiliaryVerbId": 1,
+        "pastParticiple": "geworden"
+    },
+    {
+        "verbID": 9,
+        "infinitiveEN": "to say",
+        "infinitiveNL": "zeggen",
+        "firstPersonSingular": "zeg",
+        "secondPersonSingular": "zegt",
+        "thirdPersonSingular": "zegt",
+        "firstPersonPlural": "zeggen",
+        "simplePastSingular": "zei",
+        "simplePastPlural": "zeiden",
+        "auxiliaryVerbId": 2,
+        "pastParticiple": "gezegd"
+    },
+    {
+        "verbID": 10,
+        "infinitiveEN": "to want",
+        "infinitiveNL": "willen",
+        "firstPersonSingular": "wil",
+        "secondPersonSingular": "wilt",
+        "thirdPersonSingular": "wil/wilt",
+        "firstPersonPlural": "willen",
+        "simplePastSingular": "wilde",
+        "simplePastPlural": "wilden",
+        "auxiliaryVerbId": 2,
+        "pastParticiple": "gewild"
     }
 ]
