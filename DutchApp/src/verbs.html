@@ -3,34 +3,39 @@
     <h2>StudyVerbs count: ${studyVerbs.length}</h2>
 
     <div class="col-md-12">
-        
+
         <button click.delegate="getStudyVerbs()">Get Study Verbs</button>
+        <div class="study-card">
+            <h2>What is the the Dutch infinitive verb for: </h2>
+            <p class="flashcard-text">${studyVerbs[deckIndex].verb.infinitiveEN}</p>
 
-        <div>
-            <h1>What is the the Dutch infinitive verb for: ${studyVerbs[deckIndex].verb.infinitiveEN}</h1>
+            <div style="text-align:center">
+                <button class="btn btn-lg btn-success" if.bind="!displayAnswer" click.delegate="showAnswer()">Show answer</button>
+                <div else>
+                    <p class="flashcard-text">${studyVerbs[deckIndex].verb.infinitiveNL}</p>
 
-            <button if.bind="!displayAnswer" click.delegate="showAnswer()">Show answer</button>
-            <div else>
-                <h1>${studyVerbs[deckIndex].verb.infinitiveNL}</h1>
 
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button class="btn btn-secondary" click.delegate="updateStudyItem(studyVerbs[deckIndex], 0.25)">Again</button>
-                    <button class="btn btn-secondary" click.delegate="updateStudyItem(studyVerbs[deckIndex], 0.5)">Hard</button>
-                    <button class="btn btn-secondary" click.delegate="updateStudyItem(studyVerbs[deckIndex], 1.5)">Good</button>
-                    <button class="btn btn-secondary" click.delegate="updateStudyItem(studyVerbs[deckIndex], 2.0)">Easy</button>
+                    
+                        <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="I didn't get it right. Show me it again soon!" 
+                                click.delegate="updateStudyItem(studyVerbs[deckIndex], 0.25)">Again</button>
+                        <button class="btn btn-warning" click.delegate="updateStudyItem(studyVerbs[deckIndex], 0.5)">Hard</button>
+                        <button class="btn btn-primary" click.delegate="updateStudyItem(studyVerbs[deckIndex], 1.5)">Good</button>
+                        <button class="btn btn-success" click.delegate="updateStudyItem(studyVerbs[deckIndex], 2.0)">Easy</button>
+
+                    
 
                 </div>
-            
             </div>
+            
         </div>
 
         <div repeat.for="studyItem of studyVerbs">
             <h1>${studyItem.verb.infinitiveNL}</h1>
-            
-
-        </div>
 
 
         </div>
+
+
+    </div>
 
 </template>

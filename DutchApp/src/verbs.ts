@@ -9,6 +9,7 @@ export class Verbs {
     studyVerbs;
     displayAnswer: boolean;
     deckIndex: number;
+    progressValue: 40;
 
     constructor(client) {
         client.configure(config => {
