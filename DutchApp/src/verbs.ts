@@ -7,12 +7,16 @@ export class Verbs {
     client;
     reviews;
     studyVerbs;
+    displayAnswer: boolean;
+    deckIndex: number;
 
     constructor(client) {
         client.configure(config => {
             config.withBaseUrl('verbs/');
         });
         this.client = client;
+        this.displayAnswer = false;
+        this.deckIndex = 0;
     }
 
     getStudyVerbs() {
@@ -24,16 +28,25 @@ export class Verbs {
             });
     }
 
+    showAnswer() {
+        this.displayAnswer = true;
+    }
+
     updateStudyItem(studyItem, recallFactor: number) {
 
         studyItem.recallScore = studyItem.recallScore * recallFactor;
 
+        this.displayAnswer = false;
+        this.deckIndex += 1;
+
         if (recallFactor == 0.25) {
+            
+            this.studyVerbs.push(studyItem);
+        } else {
             var index = this.studyVerbs.indexOf(studyItem);
             if (index > -1) {
                 this.studyVerbs.splice(index, 1);
             }
-            this.studyVerbs.push(studyItem);
         }
 
         this.client.fetch('UpdateStudyItem', {

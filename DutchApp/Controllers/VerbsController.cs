@@ -115,10 +115,6 @@ namespace DutchApp.Controllers
             return Ok();
         }
 
-        public IActionResult AddVerb()
-        {
-            return View();
-        }
 
         [HttpPost]
         public async Task<IActionResult> AddVerb([FromBody]Verb model)

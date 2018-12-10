@@ -55,10 +55,4 @@
     <TypeScriptCompile Include="src\word-order-lesson.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Views\Verbs\AddVerb.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-  </ItemGroup>
-
 </Project>

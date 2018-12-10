@@ -1,9 +1,0 @@
-﻿@model IEnumerable<Verb>
-
-<h1>Verbs</h1>
-<a asp-action="AddVerb">Add Verb</a>
-<p>Count: @Model.Count()</p>
-@foreach (var item in Model)
-{
-    <li>@item.InfinitiveNL</li>
-}

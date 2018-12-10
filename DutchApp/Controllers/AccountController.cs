@@ -80,7 +80,7 @@ namespace DutchApp.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Verbs", "App");
+                    return RedirectToAction("Index", "App");
                 }
             }
             return View(model);
