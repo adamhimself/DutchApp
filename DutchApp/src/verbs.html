@@ -9,20 +9,22 @@
             <h2>What is the the Dutch infinitive verb for: </h2>
             <p class="flashcard-text">${studyVerbs[deckIndex].verb.infinitiveEN}</p>
 
+            <input class="form-control-lg" type="text" placeholder="Write answer">
+            
+
             <div style="text-align:center">
-                <button class="btn btn-lg btn-success" if.bind="!displayAnswer" click.delegate="showAnswer()">Show answer</button>
+                <button class="btn btn-lg btn-success btn-square" if.bind="!displayAnswer" click.delegate="showAnswer()">Show answer</button>
                 <div else>
                     <p class="flashcard-text">${studyVerbs[deckIndex].verb.infinitiveNL}</p>
 
 
                     
-                        <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="I didn't get it right. Show me it again soon!" 
+                        <button class="btn btn-danger btn-square" data-toggle="tooltip" data-placement="bottom" title="I didn't get it right. Show me it again soon!" 
                                 click.delegate="updateStudyItem(studyVerbs[deckIndex], 0.25)">Again</button>
-                        <button class="btn btn-warning" click.delegate="updateStudyItem(studyVerbs[deckIndex], 0.5)">Hard</button>
-                        <button class="btn btn-primary" click.delegate="updateStudyItem(studyVerbs[deckIndex], 1.5)">Good</button>
-                        <button class="btn btn-success" click.delegate="updateStudyItem(studyVerbs[deckIndex], 2.0)">Easy</button>
-
-                    
+                        <button class="btn btn-warning btn-square" click.delegate="updateStudyItem(studyVerbs[deckIndex], 0.5)">Hard</button>
+                        <button class="btn btn-primary btn-square" click.delegate="updateStudyItem(studyVerbs[deckIndex], 1.5)">Good</button>
+                        <button class="btn btn-success btn-square" click.delegate="updateStudyItem(studyVerbs[deckIndex], 2.0)">Easy</button>
+                                       
 
                 </div>
             </div>

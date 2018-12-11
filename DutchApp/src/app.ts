@@ -19,7 +19,7 @@ export class App {
             { route: ['', 'home'], name: 'home', moduleId: PLATFORM.moduleName('./home'), nav: true, title: 'Home' },
             { route: 'grammar', name: 'grammar', moduleId: PLATFORM.moduleName('./grammar'), nav: true, title: 'Grammar' },
             { route: 'verbs', name: 'verbs', moduleId: PLATFORM.moduleName('./verbs'), nav: true, title: 'Verbs'},
-            { route: 'word-order-lesson', name: 'word-order-lesson', moduleId: PLATFORM.moduleName('./word-order-lesson'), nav: true, title: 'Word order'}
+            { route: 'basic-word-order', name: 'basic-word-order', moduleId: PLATFORM.moduleName('./basic-word-order'), nav: true, title: 'Word order'}
         ]);
     }
     

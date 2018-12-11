@@ -7,20 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="src\basic-word-order.ts" />
     <None Remove="src\components\stats.ts" />
     <None Remove="src\environment.ts" />
     <None Remove="src\grammar-helper.ts" />
     <None Remove="src\grammar.ts" />
     <None Remove="src\home.ts" />
     <None Remove="src\loading-indicator.ts" />
-    <None Remove="src\register-user.ts" />
     <None Remove="src\resources\app.ts" />
     <None Remove="src\resources\flash-card.ts" />
     <None Remove="src\resources\list-of-flashcards.ts" />
     <None Remove="src\resources\site.css" />
     <None Remove="src\resources\user.ts" />
     <None Remove="src\verbs.ts" />
-    <None Remove="src\word-order-lesson.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,13 +45,11 @@
     <TypeScriptCompile Include="src\grammar.ts" />
     <TypeScriptCompile Include="src\grammar-helper.ts" />
     <TypeScriptCompile Include="src\home.ts" />
-    <TypeScriptCompile Include="src\register-user.ts" />
     <TypeScriptCompile Include="src\resources\loading-indicator.ts" />
     <TypeScriptCompile Include="src\flash-card.ts" />
     <TypeScriptCompile Include="src\flashcard-seeder.ts" />
-    <TypeScriptCompile Include="src\user.ts" />
     <TypeScriptCompile Include="src\verbs.ts" />
-    <TypeScriptCompile Include="src\word-order-lesson.ts" />
+    <TypeScriptCompile Include="src\basic-word-order.ts" />
   </ItemGroup>
 
 </Project>
