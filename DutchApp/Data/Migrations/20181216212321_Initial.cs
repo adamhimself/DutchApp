@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DutchApp.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +48,7 @@ namespace DutchApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Verbs",
+                name: "AuxiliaryVerb",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -61,18 +61,11 @@ namespace DutchApp.Migrations
                     FirstPersonPlural = table.Column<string>(nullable: true),
                     SimplePastSingular = table.Column<string>(nullable: true),
                     SimplePastPlural = table.Column<string>(nullable: true),
-                    AuxiliaryVerbID = table.Column<int>(nullable: false),
                     PastParticiple = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Verbs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Verbs_Verbs_AuxiliaryVerbID",
-                        column: x => x.AuxiliaryVerbID,
-                        principalTable: "Verbs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_AuxiliaryVerb", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -182,29 +175,57 @@ namespace DutchApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudyItems",
+                name: "Verbs",
                 columns: table => new
                 {
-                    StudyItemID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    AppUserID = table.Column<string>(nullable: true),
-                    VerbID = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false),
-                    LastReviewed = table.Column<DateTime>(nullable: false),
-                    DueDate = table.Column<DateTime>(nullable: false),
-                    RecallScore = table.Column<double>(nullable: false)
+                    InfinitiveEN = table.Column<string>(nullable: true),
+                    InfinitiveNL = table.Column<string>(nullable: true),
+                    FirstPersonSingular = table.Column<string>(nullable: true),
+                    SecondPersonSingular = table.Column<string>(nullable: true),
+                    ThirdPersonSingular = table.Column<string>(nullable: true),
+                    FirstPersonPlural = table.Column<string>(nullable: true),
+                    SimplePastSingular = table.Column<string>(nullable: true),
+                    SimplePastPlural = table.Column<string>(nullable: true),
+                    PastParticiple = table.Column<string>(nullable: true),
+                    AuxiliaryVerbId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudyItems", x => x.StudyItemID);
+                    table.PrimaryKey("PK_Verbs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StudyItems_AspNetUsers_AppUserID",
+                        name: "FK_Verbs_AuxiliaryVerb_AuxiliaryVerbId",
+                        column: x => x.AuxiliaryVerbId,
+                        principalTable: "AuxiliaryVerb",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LearningItems",
+                columns: table => new
+                {
+                    LearningItemID = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastReviewed = table.Column<DateTime>(nullable: false),
+                    DueDate = table.Column<DateTime>(nullable: false),
+                    RecallScore = table.Column<double>(nullable: false),
+                    VerbID = table.Column<int>(nullable: false),
+                    AppUserID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LearningItems", x => x.LearningItemID);
+                    table.ForeignKey(
+                        name: "FK_LearningItems_AspNetUsers_AppUserID",
                         column: x => x.AppUserID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_StudyItems_Verbs_VerbID",
+                        name: "FK_LearningItems_Verbs_VerbID",
                         column: x => x.VerbID,
                         principalTable: "Verbs",
                         principalColumn: "Id",
@@ -217,11 +238,10 @@ namespace DutchApp.Migrations
                 {
                     ReviewID = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    VerbID = table.Column<int>(nullable: false),
-                    AppUserID = table.Column<string>(nullable: true),
                     ReviewDate = table.Column<DateTime>(nullable: false),
                     RecallDifficulty = table.Column<int>(nullable: false),
-                    StudyItemID = table.Column<int>(nullable: true)
+                    AppUserID = table.Column<string>(nullable: true),
+                    LearningItemID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -233,16 +253,10 @@ namespace DutchApp.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reviews_StudyItems_StudyItemID",
-                        column: x => x.StudyItemID,
-                        principalTable: "StudyItems",
-                        principalColumn: "StudyItemID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reviews_Verbs_VerbID",
-                        column: x => x.VerbID,
-                        principalTable: "Verbs",
-                        principalColumn: "Id",
+                        name: "FK_Reviews_LearningItems_LearningItemID",
+                        column: x => x.LearningItemID,
+                        principalTable: "LearningItems",
+                        principalColumn: "LearningItemID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -284,34 +298,29 @@ namespace DutchApp.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_LearningItems_AppUserID",
+                table: "LearningItems",
+                column: "AppUserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LearningItems_VerbID",
+                table: "LearningItems",
+                column: "VerbID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_AppUserID",
                 table: "Reviews",
                 column: "AppUserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_StudyItemID",
+                name: "IX_Reviews_LearningItemID",
                 table: "Reviews",
-                column: "StudyItemID");
+                column: "LearningItemID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_VerbID",
-                table: "Reviews",
-                column: "VerbID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudyItems_AppUserID",
-                table: "StudyItems",
-                column: "AppUserID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudyItems_VerbID",
-                table: "StudyItems",
-                column: "VerbID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Verbs_AuxiliaryVerbID",
+                name: "IX_Verbs_AuxiliaryVerbId",
                 table: "Verbs",
-                column: "AuxiliaryVerbID");
+                column: "AuxiliaryVerbId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -338,13 +347,16 @@ namespace DutchApp.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "StudyItems");
+                name: "LearningItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Verbs");
+
+            migrationBuilder.DropTable(
+                name: "AuxiliaryVerb");
         }
     }
 }

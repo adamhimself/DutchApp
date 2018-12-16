@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DutchApp.Data.Entities
 {
-    public class Verb
+    public class AuxiliaryVerb
     {
         public int Id { get; set; }
         public string InfinitiveEN { get; set; }
@@ -17,8 +17,5 @@ namespace DutchApp.Data.Entities
         public string SimplePastSingular { get; set; }
         public string SimplePastPlural { get; set; }
         public string PastParticiple { get; set; }
-
-        public AuxiliaryVerb AuxiliaryVerb { get; set; }
-
     }
 }

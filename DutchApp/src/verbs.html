@@ -5,15 +5,19 @@
     <div class="col-md-12">
 
         <button click.delegate="getStudyVerbs()">Get Study Verbs</button>
+        <h3>Total verbs = ${allVerbs.length}</h3>
         <div class="study-card">
             <h2>What is the the Dutch infinitive verb for: </h2>
+            <p class="flashcard-text">${allVerbs[count].infinitiveNL}</p>
             <p class="flashcard-text">${studyVerbs[deckIndex].verb.infinitiveEN}</p>
 
             <input class="form-control-lg" type="text" placeholder="Write answer">
             
 
             <div style="text-align:center">
-                <button class="btn btn-lg btn-success btn-square" if.bind="!displayAnswer" click.delegate="showAnswer()">Show answer</button>
+                <input type="submit" class="btn btn-lg btn-success btn-square" if.bind="!displayAnswer" click.delegate="showAnswer()" />
+                
+                
                 <div else>
                     <p class="flashcard-text">${studyVerbs[deckIndex].verb.infinitiveNL}</p>
 
@@ -29,12 +33,6 @@
                 </div>
             </div>
             
-        </div>
-
-        <div repeat.for="studyItem of studyVerbs">
-            <h1>${studyItem.verb.infinitiveNL}</h1>
-
-
         </div>
 
 

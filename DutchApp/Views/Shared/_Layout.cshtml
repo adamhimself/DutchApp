@@ -15,7 +15,11 @@
 <body>
 
   <nav class="dutch-header text-white navbar navbar-dark">
-    <a class="nav-link active" asp-controller="App" asp-action="Index">Index</a>
+      <a class="navbar-brand nav-link active" asp-controller="App" asp-action="Index">
+          <img src="~/images/stroopwafel.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+          Wonderdutch
+          <img  />
+      </a>
     @if (User.Identity.IsAuthenticated)
     {
       <div class="navbar float-right">

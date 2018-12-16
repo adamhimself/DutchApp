@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DutchApp.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class VerbsController : Controller
     {
         
@@ -36,24 +36,14 @@ namespace DutchApp.Controllers
         public IActionResult GetStudyVerbs()
         {
             var userId = _userManager.GetUserId(User);
-            var studyItems = _repository.GetStudyVerbs(userId);
-
-            //foreach (var verb in verbs)
-            //{
-            //    results.Add(new VerbsBasicDto
-            //    {
-            //        Id = verb.Id,
-            //        InfinitiveEN = verb.InfinitiveEN,
-            //        InfinitiveNL = verb.InfinitiveNL,
-            //        Reviews = verb.Reviews
-            //    });
-            //}
+            var studyItems = _repository.GetLearningVerbs(userId);
 
             return Json(studyItems);
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        public IActionResult studyItems()
+        public IActionResult GetAllVerbs()
         {
             var verbs = _repository.GetAllVerbs();
 
@@ -73,14 +63,14 @@ namespace DutchApp.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateStudyItem([FromBody]StudyItem model)
+        public async Task<IActionResult> UpdateStudyItem([FromBody]LearningItem model)
         {
-            var studyItemToUpdate = await _context.StudyItems.FindAsync(model.StudyItemID);
+            var itemToUpdate = await _context.LearningItems.FindAsync(model.LearningItemID);
 
-            studyItemToUpdate.RecallScore = model.RecallScore;
-            studyItemToUpdate.LastReviewed = DateTime.UtcNow;
+            itemToUpdate.RecallScore = model.RecallScore;
+            itemToUpdate.LastReviewed = DateTime.UtcNow;
 
-            await TryUpdateModelAsync<StudyItem>(studyItemToUpdate);
+            await TryUpdateModelAsync<LearningItem>(itemToUpdate);
             
             _repository.SaveAll();
             return NoContent();
@@ -108,39 +98,12 @@ namespace DutchApp.Controllers
                 RecallDifficulty = model.RecallDifficulty,
                 AppUser = user,
                 ReviewDate = DateTime.UtcNow,
-                StudyItemID = model.StudyItemID
+                LearningItemID = model.LearningItemID
             };
 
             _repository.AddReview(userReview);
             return Ok();
         }
 
-
-        [HttpPost]
-        public async Task<IActionResult> AddVerb([FromBody]Verb model)
-        {
-            if (ModelState.IsValid)
-            {
-                var verb = new Verb
-                {
-                    InfinitiveEN = model.InfinitiveEN,
-                    InfinitiveNL = model.InfinitiveNL,
-                    FirstPersonSingular = model.FirstPersonSingular,
-                    SecondPersonSingular = model.SecondPersonSingular,
-                    ThirdPersonSingular = model.ThirdPersonSingular,
-                    SimplePastSingular = model.SimplePastSingular,
-                    SimplePastPlural = model.SimplePastPlural,
-                    PastParticiple = model.PastParticiple,
-                    FirstPersonPlural = model.FirstPersonPlural,
-                    AuxiliaryVerbID = model.AuxiliaryVerbID
-                    
-                };
-
-                _repository.AddVerbs(verb);
-                return RedirectToAction("Verbs", "App");
-        }
-            ModelState.AddModelError("", "Failed to add verb");
-            return RedirectToAction("Verbs", "App");
-        }
     }
 }

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DutchApp.Migrations
 {
     [DbContext(typeof(DutchContext))]
-    [Migration("20181209085218_initial")]
-    partial class initial
+    [Migration("20181216213531_Initial2")]
+    partial class Initial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,64 +71,10 @@ namespace DutchApp.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("DutchApp.Data.Entities.Review", b =>
-                {
-                    b.Property<int>("ReviewID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AppUserID");
-
-                    b.Property<int>("RecallDifficulty");
-
-                    b.Property<DateTime>("ReviewDate");
-
-                    b.Property<int?>("StudyItemID");
-
-                    b.Property<int>("VerbID");
-
-                    b.HasKey("ReviewID");
-
-                    b.HasIndex("AppUserID");
-
-                    b.HasIndex("StudyItemID");
-
-                    b.HasIndex("VerbID");
-
-                    b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("DutchApp.Data.Entities.StudyItem", b =>
-                {
-                    b.Property<int>("StudyItemID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AppUserID");
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<DateTime>("DueDate");
-
-                    b.Property<DateTime>("LastReviewed");
-
-                    b.Property<double>("RecallScore");
-
-                    b.Property<int>("VerbID");
-
-                    b.HasKey("StudyItemID");
-
-                    b.HasIndex("AppUserID");
-
-                    b.HasIndex("VerbID");
-
-                    b.ToTable("StudyItems");
-                });
-
-            modelBuilder.Entity("DutchApp.Data.Entities.Verb", b =>
+            modelBuilder.Entity("DutchApp.Data.Entities.AuxiliaryVerb", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AuxiliaryVerbID");
 
                     b.Property<string>("FirstPersonPlural");
 
@@ -150,7 +96,85 @@ namespace DutchApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuxiliaryVerbID");
+                    b.ToTable("AuxiliaryVerbs");
+                });
+
+            modelBuilder.Entity("DutchApp.Data.Entities.LearningItem", b =>
+                {
+                    b.Property<int>("LearningItemID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AppUserID");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<DateTime>("DueDate");
+
+                    b.Property<DateTime>("LastReviewed");
+
+                    b.Property<double>("RecallScore");
+
+                    b.Property<int>("VerbID");
+
+                    b.HasKey("LearningItemID");
+
+                    b.HasIndex("AppUserID");
+
+                    b.HasIndex("VerbID");
+
+                    b.ToTable("LearningItems");
+                });
+
+            modelBuilder.Entity("DutchApp.Data.Entities.Review", b =>
+                {
+                    b.Property<int>("ReviewID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AppUserID");
+
+                    b.Property<int>("LearningItemID");
+
+                    b.Property<int>("RecallDifficulty");
+
+                    b.Property<DateTime>("ReviewDate");
+
+                    b.HasKey("ReviewID");
+
+                    b.HasIndex("AppUserID");
+
+                    b.HasIndex("LearningItemID");
+
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("DutchApp.Data.Entities.Verb", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("AuxiliaryVerbId");
+
+                    b.Property<string>("FirstPersonPlural");
+
+                    b.Property<string>("FirstPersonSingular");
+
+                    b.Property<string>("InfinitiveEN");
+
+                    b.Property<string>("InfinitiveNL");
+
+                    b.Property<string>("PastParticiple");
+
+                    b.Property<string>("SecondPersonSingular");
+
+                    b.Property<string>("SimplePastPlural");
+
+                    b.Property<string>("SimplePastSingular");
+
+                    b.Property<string>("ThirdPersonSingular");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuxiliaryVerbId");
 
                     b.ToTable("Verbs");
                 });
@@ -262,40 +286,35 @@ namespace DutchApp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("DutchApp.Data.Entities.LearningItem", b =>
+                {
+                    b.HasOne("DutchApp.Data.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserID");
+
+                    b.HasOne("DutchApp.Data.Entities.Verb", "Verb")
+                        .WithMany()
+                        .HasForeignKey("VerbID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("DutchApp.Data.Entities.Review", b =>
                 {
                     b.HasOne("DutchApp.Data.Entities.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("AppUserID");
 
-                    b.HasOne("DutchApp.Data.Entities.StudyItem")
+                    b.HasOne("DutchApp.Data.Entities.LearningItem", "LearningItem")
                         .WithMany("Reviews")
-                        .HasForeignKey("StudyItemID");
-
-                    b.HasOne("DutchApp.Data.Entities.Verb", "Verb")
-                        .WithMany()
-                        .HasForeignKey("VerbID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DutchApp.Data.Entities.StudyItem", b =>
-                {
-                    b.HasOne("DutchApp.Data.Entities.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserID");
-
-                    b.HasOne("DutchApp.Data.Entities.Verb", "Verb")
-                        .WithMany()
-                        .HasForeignKey("VerbID")
+                        .HasForeignKey("LearningItemID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DutchApp.Data.Entities.Verb", b =>
                 {
-                    b.HasOne("DutchApp.Data.Entities.Verb", "AuxiliaryVerb")
+                    b.HasOne("DutchApp.Data.Entities.AuxiliaryVerb", "AuxiliaryVerb")
                         .WithMany()
-                        .HasForeignKey("AuxiliaryVerbID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AuxiliaryVerbId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

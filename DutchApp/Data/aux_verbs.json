@@ -1,0 +1,26 @@
+[
+    {
+        "verbID": 1,
+        "infinitiveEN": "to be",
+        "infinitiveNL": "zijn",
+        "firstPersonSingular": "ben",
+        "secondPersonSingular": "bent",
+        "thirdPersonSingular": "is",
+        "firstPersonPlural": "zijn",
+        "simplePastSingular": "was",
+        "simplePastPlural": "waren",
+        "pastParticiple": "geweest"
+    },
+    {
+        "verbID": 2,
+        "infinitiveEN": "to have",
+        "infinitiveNL": "hebben",
+        "firstPersonSingular": "heb",
+        "secondPersonSingular": "hebt",
+        "thirdPersonSingular": "heeft",
+        "firstPersonPlural": "hebben",
+        "simplePastSingular": "had",
+        "simplePastPlural": "hadden",
+        "pastParticiple": "gehad"
+    }
+]

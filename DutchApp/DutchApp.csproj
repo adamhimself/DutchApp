@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <None Remove="src\basic-word-order.ts" />
-    <None Remove="src\components\stats.ts" />
+    <None Remove="src\components\user-dashboard.ts" />
     <None Remove="src\environment.ts" />
     <None Remove="src\grammar-helper.ts" />
     <None Remove="src\grammar.ts" />
@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="src\app.ts" />
-    <TypeScriptCompile Include="src\components\stats.ts" />
+    <TypeScriptCompile Include="src\components\user-dashboard.ts" />
     <TypeScriptCompile Include="src\environment.ts" />
     <TypeScriptCompile Include="src\grammar.ts" />
     <TypeScriptCompile Include="src\grammar-helper.ts" />

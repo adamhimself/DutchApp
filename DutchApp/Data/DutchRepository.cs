@@ -56,16 +56,16 @@ namespace DutchApp.Data
           return _context.SaveChanges() > 0;
         }
 
-        public IEnumerable<StudyItem> GetStudyVerbs(string userId)
+        public IEnumerable<LearningItem> GetLearningVerbs(string userId)
         {
             // If User has no study items.
-            if (!_context.StudyItems.Where(r => r.AppUserID == userId).Any()) 
+            if (!_context.LearningItems.Where(r => r.AppUserID == userId).Any()) 
             {
                 var verbs = _context.Verbs.Take(5).ToList();
-                var studyItems = new List<StudyItem>();
+                var studyItems = new List<LearningItem>();
                 foreach (var verb in verbs)
                 {
-                    studyItems.Add(new StudyItem()
+                    studyItems.Add(new LearningItem()
                     {
                         Verb = verb,
                         AppUserID = userId,
@@ -73,16 +73,16 @@ namespace DutchApp.Data
                         RecallScore = 1.0,
                     });
                 }
-                _context.StudyItems.AddRange(studyItems);
+                _context.LearningItems.AddRange(studyItems);
                 SaveAll();
-                return _context.StudyItems.Where(s => s.AppUserID == userId)
+                return _context.LearningItems.Where(s => s.AppUserID == userId)
                     .Include(v => v.Verb).ToList();
             } 
-            // Else use has studyitems.
+            // Else use has LearningItems.
             else
             {
                 // Get all study items and sort by recall score.
-                var studyVerbs = _context.StudyItems.Where(s => s.AppUserID == userId)
+                var studyVerbs = _context.LearningItems.Where(s => s.AppUserID == userId)
                    .Include(v => v.Verb)
                    .OrderBy(i => i.RecallScore)
                    .ToList();
@@ -107,7 +107,7 @@ namespace DutchApp.Data
 
                     foreach (var verb in newVerbs)
                     {
-                        var newVerb = (new StudyItem()
+                        var newVerb = (new LearningItem()
                         {
                             AppUserID = userId,
                             VerbID = verb.Id,
@@ -115,16 +115,12 @@ namespace DutchApp.Data
                             RecallScore = 1.0
                         });
 
-                        _context.StudyItems.Add(newVerb);
+                        _context.LearningItems.Add(newVerb);
                         SaveAll();
 
                         studyVerbs.Add(newVerb);
                     }
-                }
-                
-
-                
-                
+                }                
                 return studyVerbs;
             }
 

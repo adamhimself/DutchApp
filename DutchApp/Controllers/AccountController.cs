@@ -1,5 +1,6 @@
 ﻿using DutchApp.Data.Entities;
 using DutchApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace DutchApp.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private ILogger<AccountController> _logger;
@@ -25,6 +27,7 @@ namespace DutchApp.Controllers
             _userManager = userManager;
         }
 
+        [AllowAnonymous]
         public IActionResult Login()
         {
             if (this.User.Identity.IsAuthenticated)
@@ -35,6 +38,7 @@ namespace DutchApp.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -59,13 +63,14 @@ namespace DutchApp.Controllers
             return View();
         }
 
-
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {

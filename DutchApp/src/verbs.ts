@@ -7,6 +7,7 @@ export class Verbs {
     client;
     reviews;
     studyVerbs;
+    allVerbs;
     displayAnswer: boolean;
     deckIndex: number;
     progressValue: 40;
@@ -18,6 +19,15 @@ export class Verbs {
         this.client = client;
         this.displayAnswer = false;
         this.deckIndex = 0;
+        this.getAllVerbs();
+    }
+
+    getAllVerbs() {        
+        this.client.fetch('GetAllVerbs')
+            .then(response => response.json())
+            .then(data => {
+                this.allVerbs = data;
+            });
     }
 
     getStudyVerbs() {
